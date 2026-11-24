@@ -19,6 +19,14 @@ Before the agent writes a single note, the judges are tested on four hand writte
 | Neutral | Same facts, different wording | Pass | Pass |
 | Dropped | One fact removed | Pass | Fail |
 
+## Why a nurse built the judges
+
+LLM judges are LLMs, and they can be confidently wrong about the very thing they grade. The first run proved it. DeepEval's built in faithfulness metric correctly failed the note with an invented morphine dose, but it also failed the golden note itself, scoring it 0 with a confident explanation that the note misattributed timing.
+
+The judge was wrong. ER nurses chart in timed blocks: a timestamp opens a block of care, and everything charted under it happened at or after that time and before the next one. The judge didn't know that convention. Its verbose output showed two causes. The truths extraction step dropped the time from events in the 1436 block, and the verdict step then treated block timing as unsupported.
+
+The easy fix would have been to loosen the threshold until the golden note passed, but that would have let the invented medication through too. Instead, the judge was taught the charting convention through DeepEval's evaluation_template override, with the metric and its strict settings unchanged. [RESULT: after the fix, the golden note passes and the morphine note still fails.]
+
 ## How it runs
 
 Everything runs locally on an RTX 5090 through Ollama, with Qwen 27B as the judge. No note ever leaves the machine. The stack is Python 3.13 managed with uv, pytest and DeepEval, with Allure reports and a small React dashboard that shows each score next to the judge's reasoning.
