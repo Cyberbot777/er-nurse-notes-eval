@@ -25,7 +25,7 @@ LLM judges are LLMs, and they can be confidently wrong about the very thing they
 
 The judge was wrong. ER nurses chart in timed blocks: a timestamp opens a block of care, and everything charted under it happened at or after that time and before the next one. The judge didn't know that convention. Its verbose output showed two causes. The truths extraction step dropped the time from events in the 1436 block, and the verdict step then treated block timing as unsupported.
 
-The easy fix would have been to loosen the threshold until the golden note passed, but that would have let the invented medication through too. Instead, the judge was taught the charting convention through DeepEval's evaluation_template override, with the metric and its strict settings unchanged. [RESULT: after the fix, the golden note passes and the morphine note still fails.]
+The easy fix would have been to loosen the threshold until the golden note passed, but that would have let the invented medication through too. Instead, the judge was taught the charting convention through DeepEval's evaluation_template override, with the metric and its strict settings unchanged. After the fix, both judges matched the nurse's answer key on all eight verdicts. The golden note passes, the invented morphine still fails faithfulness, the reworded note passes both judges, and the note missing its allergy status fails recall.
 
 ## How it runs
 
@@ -33,8 +33,12 @@ Everything runs locally on an RTX 5090 through Ollama, with Qwen 27B as the judg
 
 ## Status
 
-In progress. The raw note, golden SOAPIE note and four judge test cases are in data/cases.json. The faithfulness and recall judges are next.
+In progress. The raw note, golden SOAPIE note and four judge test cases are in data/cases.json. Faithfulness and recall judges are built and match the nurse's answer key on all eight verdicts. The SOAPIE agent is next.
 
 ## Data
 
 All notes are synthetic. No real patient information is used anywhere in this repo.
+
+## About
+
+Built by Richard Hall, a former ER nurse and nurse manager who now works as an AI engineer. Every golden note and expected verdict is written or reviewed by a nurse.
