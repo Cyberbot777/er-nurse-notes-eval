@@ -1,6 +1,4 @@
-# DeepEval's GEval metric, which scores an output by following steps we write ourselves.
 from deepeval.metrics import GEval
-# The enum that names test case fields, used to choose which fields the judge sees.
 from deepeval.test_case import SingleTurnParams
 
 # The six steps the judge follows. GEval sends them word for word as a numbered list.
@@ -14,20 +12,16 @@ RECALL_STEPS = [
 ]
 
 
-# Build the recall metric around the judge model passed in, so the judge is always explicit.
-def make_recall_metric(model):
-    # Return a GEval metric set up for recall.
+# Build the recall metric. The judge is always passed in, never a default.
+def make_recall_metric(model, verbose=False):
     return GEval(
-        # The name shown in results.
         name="Recall",
-        # Our steps, used as written. GEval skips generating its own steps when these are given.
+        # Our own steps, so GEval does not generate its own.
         evaluation_steps=RECALL_STEPS,
-        # The only two fields the judge sees: the agent's note and the golden note.
+        # The judge sees only the agent's note and the golden note.
         evaluation_params=[SingleTurnParams.ACTUAL_OUTPUT, SingleTurnParams.EXPECTED_OUTPUT],
-        # The judge model, always passed in, never a default.
         model=model,
         # Strict mode: the judge answers 1 or 0, and only 1 passes.
         strict_mode=True,
-        # Print the steps, score and reason while it runs.
-        verbose_mode=True,
+        verbose_mode=verbose,
     )

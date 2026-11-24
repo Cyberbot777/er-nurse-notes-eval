@@ -7,3 +7,8 @@ dependencies = [
     "ollama>=0.6.3",
     "pytest>=9.2.0",
 ]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+asyncio_default_fixture_loop_scope = "function"
+filterwarnings = ["ignore:There is no current event loop:DeprecationWarning"]

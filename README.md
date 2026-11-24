@@ -39,6 +39,3 @@ In progress. The raw note, golden SOAPIE note and four judge test cases are in d
 
 All notes are synthetic. No real patient information is used anywhere in this repo.
 
-## About
-
-Built by Richard Hall, a former ER nurse and nurse manager who now works as an AI engineer. Every golden note and expected verdict is written or reviewed by a nurse.
