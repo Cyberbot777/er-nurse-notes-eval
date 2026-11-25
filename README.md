@@ -14,15 +14,7 @@ DeepEval includes more than 50 metrics. Most of them are LLM judges, and a few u
 
 An evaluation tells you what is wrong. A correction loop uses that to make the system better. The application produces an output, the LLM judges score it and explain every failure, the failures point to the fix, and the same LLM judges run again so every fix is measured, not guessed.
 
-```mermaid
-flowchart LR
-    A["Raw ER nurse note"] --> B["SOAPIE agent<br/>Ministral 3 8B"]
-    B --> C["SOAPIE note"]
-    C --> D["LLM judges<br/>Qwen 3.8 27B<br/>faithfulness and recall"]
-    G["Golden note<br/>the nurse's correct version"] --> D
-    D --> E["Verdicts and reasons<br/>made up facts, missing facts"]
-    E --> F["Improve the SOAPIE agent<br/>and rerun the LLM judges"]
-```
+![The evaluation and correction loop](docs/loop.svg)
 
 One step comes before the loop: proving the LLM judges. An LLM judge is a language model too, so it can be confidently wrong. Each LLM judge in this repo is tested on cases where a domain expert has already set the right verdict, called the answer key, before it grades anything.
 

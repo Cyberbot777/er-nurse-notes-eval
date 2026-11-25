@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 320" width="1120" height="320" role="img" aria-label="The evaluation and correction loop: a raw ER nurse note goes to the SOAPIE agent, which writes a SOAPIE note. The LLM judges grade it against the golden note and return verdicts and reasons. Those drive improvements to the SOAPIE agent, and the loop runs again.">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#57606a"/></marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0969da"/></marker>
+  </defs>
+  <rect x="0.5" y="0.5" width="1119" height="319" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" text-anchor="middle" fill="#1f2328">
+    <g fill="#f6f8fa" stroke="#57606a" stroke-width="1.2">
+      <rect x="20" y="30" width="160" height="76" rx="6"/>
+      <rect x="204" y="30" width="160" height="76" rx="6"/>
+      <rect x="388" y="30" width="160" height="76" rx="6"/>
+      <rect x="572" y="30" width="160" height="76" rx="6"/>
+      <rect x="756" y="30" width="160" height="76" rx="6"/>
+      <rect x="940" y="30" width="160" height="76" rx="6"/>
+      <rect x="388" y="150" width="160" height="76" rx="6"/>
+    </g>
+    <text x="100" y="73" font-size="13" font-weight="600">Raw ER nurse note</text>
+    <text x="284" y="64" font-size="13" font-weight="600">SOAPIE agent</text>
+    <text x="284" y="84" font-size="12">Ministral 3 8B</text>
+    <text x="468" y="73" font-size="13" font-weight="600">SOAPIE note</text>
+    <text x="652" y="55" font-size="13" font-weight="600">LLM judges</text>
+    <text x="652" y="74" font-size="12">Qwen 3.8 27B</text>
+    <text x="652" y="92" font-size="12">faithfulness and recall</text>
+    <text x="836" y="55" font-size="13" font-weight="600">Verdicts and reasons</text>
+    <text x="836" y="74" font-size="12">hallucinations</text>
+    <text x="836" y="92" font-size="12">and omissions</text>
+    <text x="1020" y="64" font-size="13" font-weight="600">Improve the</text>
+    <text x="1020" y="84" font-size="13" font-weight="600">SOAPIE agent</text>
+    <text x="468" y="184" font-size="13" font-weight="600">Golden note</text>
+    <text x="468" y="204" font-size="12">nurse's correct version</text>
+    <text x="652" y="270" font-size="12" fill="#0969da" font-weight="600">Run the loop again with the improved SOAPIE agent</text>
+  </g>
+  <g fill="none" stroke="#57606a" stroke-width="1.5">
+    <path d="M180 68H200" marker-end="url(#a)"/>
+    <path d="M364 68H384" marker-end="url(#a)"/>
+    <path d="M548 68H568" marker-end="url(#a)"/>
+    <path d="M732 68H752" marker-end="url(#a)"/>
+    <path d="M916 68H936" marker-end="url(#a)"/>
+    <path d="M548 188H652V110" marker-end="url(#a)"/>
+  </g>
+  <path d="M1020 106V282H284V110" fill="none" stroke="#0969da" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#b)"/>
+</svg>
