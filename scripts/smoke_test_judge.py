@@ -1,8 +1,8 @@
-# Import DeepEval's wrapper for talking to a local Ollama server.
-from deepeval.models import OllamaModel
+# Import the shared judge definition.
+from judges.model import make_judge
 
-# Create the judge with the exact model name, the local server address, and temperature 0 so answers repeat.
-judge = OllamaModel(model="qwen3.8:27b", base_url="http://localhost:11434", temperature=0)
+# Create the judge: local Qwen through Ollama, defined once in judges/model.py.
+judge = make_judge()
 
 # The one question we send to the judge.
 prompt = "In one sentence, what does NKDA mean in a nursing note?"

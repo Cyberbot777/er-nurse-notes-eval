@@ -1,22 +1,17 @@
 import json
 from pathlib import Path
 
-from deepeval.models import OllamaModel
 from deepeval.test_case import LLMTestCase
 from deepeval.metrics import FaithfulnessMetric
 from judges.faithfulness_template import ERFaithfulnessTemplate
+from judges.model import make_judge
 
 # Load the cases file and pick the case to judge. Change the id to try another case.
 data = json.loads((Path(__file__).parent.parent / "data" / "cases.json").read_text(encoding="utf-8"))
 case = next(c for c in data["cases"] if c["id"] == "dropped")
 
-# The judge: local Qwen through Ollama.
-judge = OllamaModel(
-    model="qwen3.8:27b",
-    base_url="http://localhost:11434",
-    temperature=0,
-    generation_kwargs={"num_ctx": 16384},
-)
+# The judge: local Qwen through Ollama, defined once in judges/model.py.
+judge = make_judge()
 
 # Faithfulness: the raw note is the only source of truth (retrieval_context), and the case output is what gets checked.
 test_case = LLMTestCase(
